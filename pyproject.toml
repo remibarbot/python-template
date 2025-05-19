@@ -1,0 +1,66 @@
+[project]
+name = "your-package"
+version = "0.1.0"
+description = "A short description of the package"
+authors = [{name="Your Name", email="you@example.com"}]
+requires-python = ">=3.9"
+
+
+dependencies = [
+]
+
+[dependency-groups]
+dev = [
+  "ruff",
+  "setuptools",
+  "mypy",
+  "bandit",
+  "pytest",
+  "pytest-cov",
+  "pytest-env",
+  "codespell",
+  "pre-commit"
+]
+
+[tool.ruff]
+exclude = [
+    ".venv",
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "src/deepmove/network/datahub/messages"
+]
+line-length = 90
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "I001",
+    "C4",
+    "RUF100",
+    # Docstring rules
+    "D200",
+    "D204",
+    "D205",
+    "D206",
+    "D213",
+    "D300",
+    "D400",
+    "D402",
+    "D404",
+    "D201",
+    "D210",
+    "D211",
+    "D403",
+    "D419",
+]
+
+[tool.mypy]
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
