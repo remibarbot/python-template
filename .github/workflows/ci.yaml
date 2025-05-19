@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: dependencies
+        run: uv sync
+
+      - name: pre-commit hooks
+        run: |
+          uv run pre-commit run --all-files
+
+      - name: Install package (editable)
+        run: uv pip install -e .
+
+      - name: pytest
+        run: uv run pytest
